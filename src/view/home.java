@@ -156,6 +156,7 @@ public class home extends JFrame {
 			case "remove":
 				remove rmv = new remove();
 				rmv.setVisible(true);
+				break;
 			
 			default:
 				break;
