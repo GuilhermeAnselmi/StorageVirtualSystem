@@ -16,6 +16,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
+import control.methods;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Dialog.ModalExclusionType;
@@ -55,13 +57,16 @@ public class home extends JFrame {
 		JMenu mnInicio = new JMenu("Inicio");
 		menuBar.add(mnInicio);
 		
-		JMenuItem mnHome = new JMenuItem("Home");
-		mnInicio.add(mnHome);
-		
 		JMenuItem mnConf = new JMenuItem("Configura\u00E7\u00F5es");
 		mnInicio.add(mnConf);
 		
 		JMenuItem mnClose = new JMenuItem("Sair");
+		mnClose.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				methods metodo = new methods();
+				metodo.sair();
+			}
+		});
 		mnInicio.add(mnClose);
 		
 		JMenu mnGestao = new JMenu("Gerenciar Produtos");
