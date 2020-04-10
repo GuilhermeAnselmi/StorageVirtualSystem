@@ -22,4 +22,7 @@ programação favorita, é SQL Server, que para quem não conhece, é uma lingua
 de programação em Banco de Dados. Então a prograação desse sistema de estoque
 virtual talvez não esteja nos "Padrões" que normalmente um sistema em java
 deveria estar, mesmo sendo uma programação em POO (Programação Orientada a
-Objetos)
+Objetos).
+
+ Ainda preciso atualizar o método para gravar e buscar dados no arquivo, 
+futuramente, irei utilizar o Elaticsearch para gravar arquivos em .json.
