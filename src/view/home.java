@@ -43,6 +43,8 @@ public class home extends JFrame {
 		});
 	}
 
+	//Interface principal
+	
 	public home() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Invictus\\Downloads\\Logo-Tipo-T.ico"));
 		setTitle("Controle de Estoque");
@@ -50,6 +52,8 @@ public class home extends JFrame {
 		setResizable(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 500);
+		
+		//Inicio da criação do menu superior
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -144,6 +148,8 @@ public class home extends JFrame {
 	
 	private static void addPopup(Component component, final JPopupMenu popup) {
 	}
+	
+	//Método de verificação para abrir novas janelas
 	
 	private void abrir(String janela) {
 		switch(janela) {

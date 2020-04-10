@@ -46,9 +46,6 @@ public class adicionar extends JFrame {
 	private JTextField txtDesconto;
 	private JTextField txtGtin;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -62,9 +59,6 @@ public class adicionar extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public adicionar() {
 		setFont(new Font("Arial", Font.BOLD, 14));
 		setTitle("Adicionar Produto");
@@ -74,6 +68,8 @@ public class adicionar extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		//Declação do conteudo da janela de adição de produtos
 		
 		txtID = new JTextField();
 		txtNome = new JTextField();
@@ -162,6 +158,12 @@ public class adicionar extends JFrame {
 		cbxVariacao.setEnabled(false);
 		cbxVariacao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				/*
+				 *Verificação da CheckBox para produtos com variação
+				 * A variação para produtos ainda será desenvolvido
+				 * será implementado apenas quando for concluido a etada de busca de produtos
+				 * que sera feito após a etapa de desenvolvimento da adição, remoção e edição de produtos.
+				 */
 				if(cbxVariacao.isSelected()) {
 					btnProximo.setEnabled(true);
 					btnFinalizar.setEnabled(false);
@@ -176,9 +178,12 @@ public class adicionar extends JFrame {
 		
 		btnFinalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				//Evento principal ao clicar para Finalizar a adição de um produto.
 				String tipo = null;
 				String descr = null;
 				
+				//Breve verificação do campo do ComboBox
 				if(cmbTipo.getSelectedItem() == null) {
 					tipo = "-";
 				} else {
@@ -199,6 +204,7 @@ public class adicionar extends JFrame {
 						descr = txtDescr.getText();
 					}
 					
+					//Envio dos dados para a classe do objeto em questão (produto)
 					produto item = new produto();
 					item.setId(Integer.parseInt(txtID.getText()));
 					item.setNome(txtNome.getText());
@@ -207,6 +213,7 @@ public class adicionar extends JFrame {
 					item.setDesconto(Float.parseFloat(desc));
 					item.setDescr(descr);
 					
+					//Chama o metodo para cadastrar os produtos, que se encontra no objeto
 					item.cadastrar();
 				}
 			}
@@ -219,6 +226,12 @@ public class adicionar extends JFrame {
 		contentPane.add(btnProximo);
 	}
 	
+	/*
+	*Método para verificação dos campos do produto
+	*Aqui é verificado se todos os TextField e outros campos
+	*tem os valores de seus respectivos tipos.
+	*É retornado um valor booleano.
+	*/
 	private boolean verif(String id, String nome, String preco, String desconto, String gtin, String descr) {
 		if(id.length() == 0 || nome.length() == 0 || preco.length() == 0) {
 			JOptionPane.showMessageDialog(null, "Todos os campos obrigatórios devem estar preenchidos", "Preenchimento Obrigatório", JOptionPane.WARNING_MESSAGE);

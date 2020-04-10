@@ -25,9 +25,6 @@ public class remove extends JFrame {
 	private JTextField txtQuant;
 	private JTextField txtGtin;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -41,9 +38,7 @@ public class remove extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	//Interface de remoção dos itens
 	public remove() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 319, 266);
@@ -61,6 +56,8 @@ public class remove extends JFrame {
 		
 		btnVerif.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				//Chama o método para verificar se o valor no campo ID é inteiro;
 				methods verificar = new methods();
 				verificar.verifInt(txtID.getText());
 			}

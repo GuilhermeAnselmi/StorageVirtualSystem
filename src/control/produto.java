@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 
 import data.arquivos;
 
+//Classe objeto produto
 public class produto {
 	private int id;
 	private String nome;
@@ -70,6 +71,7 @@ public class produto {
 		this.descr = descr;
 	}
 	
+	//Método de conversão e envio dos dados para um arquivo .pdt (criado por mim)
 	public void cadastrar() {
 		String produto[];
 		produto = new String[8];
@@ -84,6 +86,7 @@ public class produto {
 		
 		arquivos escreve = new arquivos();
 		
+		//Aqui é feito o envio dos dados um de cada vez, seja ele algum valor, caracter ou nulo (0)
 		if(arquivos.verifID(produto[0]) == false) {
 			for(int c = 0; c < 8; c++) {
 				arquivos.escrever(produto[c] + "/");
