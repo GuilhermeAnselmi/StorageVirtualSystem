@@ -8,6 +8,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
+import control.produto;
+
 import javax.swing.JOptionPane;
 
 /*
@@ -36,7 +38,7 @@ public class arquivos {
 	}
 	
 	//Método que verifica a existencia de um ID
-	public static boolean verifID(String id) {
+	public static boolean verifNotID(String id) {
 		try {
 			FileReader arq = new FileReader("products.pdt");
 			BufferedReader ler = new BufferedReader(arq);
@@ -49,7 +51,6 @@ public class arquivos {
 					verif = linha.split("/")[0];
 					
 					if(verif.equals(id)) {
-						JOptionPane.showMessageDialog(null, "Ja existe um item cadastrado com esse ID: " + id, "ID Existente", JOptionPane.WARNING_MESSAGE);
 						arq.close();
 						ler.close();
 						return true;
@@ -71,6 +72,171 @@ public class arquivos {
 			return true;
 		}
 	}
+	
+	
+	
+	
+	
+	
+	/*
+	 * Os proximos 4 metodos são métodos para retornar as caracteristicas para 
+	 * a janela de remoção
+	 */
+	public static String procurarNome(String id) {
+		try {
+			FileReader arq = new FileReader("products.pdt");
+			BufferedReader ler = new BufferedReader(arq);
+			
+			String verif;
+			String linha;
+			
+			String nome;
+			
+			try {
+				linha = ler.readLine();
+				while(linha != null) {
+					verif = linha.split("/")[0];
+					
+					if(verif.equals(id)) {
+						nome = linha.split("/")[1];
+						
+						return nome;
+					}
+					
+					linha = ler.readLine();
+				}
+				
+				arq.close();
+				ler.close();
+			} catch(Exception erro) {
+				JOptionPane.showMessageDialog(null, erro, "Erro", JOptionPane.ERROR_MESSAGE);
+				return null;
+			}
+		} catch(Exception erro) {
+			JOptionPane.showMessageDialog(null, erro, "Erro", JOptionPane.ERROR_MESSAGE);
+			return null;
+		}
+		
+		return null;
+	}
+	
+	public static String procurarPreco(String id) {
+		try {
+			FileReader arq = new FileReader("products.pdt");
+			BufferedReader ler = new BufferedReader(arq);
+			
+			String verif;
+			String linha;
+			
+			String preco;
+			
+			try {
+				linha = ler.readLine();
+				while(linha != null) {
+					verif = linha.split("/")[0];
+					
+					if(verif.equals(id)) {
+						preco = linha.split("/")[2];
+						
+						return preco;
+					}
+					
+					linha = ler.readLine();
+				}
+				
+				arq.close();
+				ler.close();
+			} catch(Exception erro) {
+				JOptionPane.showMessageDialog(null, erro, "Erro", JOptionPane.ERROR_MESSAGE);
+				return null;
+			}
+		} catch(Exception erro) {
+			JOptionPane.showMessageDialog(null, erro, "Erro", JOptionPane.ERROR_MESSAGE);
+			return null;
+		}
+		
+		return null;
+	}
+	
+	public static String procurarGtin(String id) {
+		try {
+			FileReader arq = new FileReader("products.pdt");
+			BufferedReader ler = new BufferedReader(arq);
+			
+			String verif;
+			String linha;
+			
+			String gtin;
+			
+			try {
+				linha = ler.readLine();
+				while(linha != null) {
+					verif = linha.split("/")[0];
+					
+					if(verif.equals(id)) {
+						gtin = linha.split("/")[5];
+						
+						return gtin;
+					}
+					
+					linha = ler.readLine();
+				}
+				
+				arq.close();
+				ler.close();
+			} catch(Exception erro) {
+				JOptionPane.showMessageDialog(null, erro, "Erro", JOptionPane.ERROR_MESSAGE);
+				return null;
+			}
+		} catch(Exception erro) {
+			JOptionPane.showMessageDialog(null, erro, "Erro", JOptionPane.ERROR_MESSAGE);
+			return null;
+		}
+		
+		return null;
+	}
+	
+	public static String procurarQuant(String id) {
+		try {
+			FileReader arq = new FileReader("products.pdt");
+			BufferedReader ler = new BufferedReader(arq);
+			
+			String verif;
+			String linha;
+			
+			String quant;
+			
+			try {
+				linha = ler.readLine();
+				while(linha != null) {
+					verif = linha.split("/")[0];
+					
+					if(verif.equals(id)) {
+						quant = linha.split("/")[7];
+						
+						return quant;
+					}
+					
+					linha = ler.readLine();
+				}
+				
+				arq.close();
+				ler.close();
+			} catch(Exception erro) {
+				JOptionPane.showMessageDialog(null, erro, "Erro", JOptionPane.ERROR_MESSAGE);
+				return null;
+			}
+		} catch(Exception erro) {
+			JOptionPane.showMessageDialog(null, erro, "Erro", JOptionPane.ERROR_MESSAGE);
+			return null;
+		}
+		
+		return null;
+	}
+	//Fim dos métodos da janela de remoção
+	
+	
+	
 	
 	//Método responsavel por pegar os produtos e listar os mesmos
 	public static String listar() {

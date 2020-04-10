@@ -24,7 +24,6 @@ public class methods {
 		
 		try {
 			Integer.parseInt(valor);
-			System.out.println(valor);
 			value = true;
 		} catch(Exception error) {
 			JOptionPane.showMessageDialog(null, "O campo ID não pode esta vazio ou contem caracteres e pontuação\n" + 

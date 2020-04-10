@@ -13,6 +13,7 @@ public class produto {
 	private float desconto;
 	private int gtin;
 	private String descr;
+	private int quant;
 	
 	//Métodos getters e setters
 	public int getId() {
@@ -32,7 +33,7 @@ public class produto {
 	}
 
 	public float getPreco() {
-		return preco;
+		return this.preco;
 	}
 
 	public void setPreco(float preco) {
@@ -71,6 +72,14 @@ public class produto {
 		this.descr = descr;
 	}
 	
+	public int getQuant() {
+		return quant;
+	}
+	
+	public void setQuant(int quant) {
+		this.quant = quant;
+	}
+	
 	//Método de conversão e envio dos dados para um arquivo .pdt (criado por mim)
 	public void cadastrar() {
 		String produto[];
@@ -84,15 +93,15 @@ public class produto {
 		produto[6] = descr;
 		produto[7] = "0";
 		
-		arquivos escreve = new arquivos();
-		
 		//Aqui é feito o envio dos dados um de cada vez, seja ele algum valor, caracter ou nulo (0)
-		if(arquivos.verifID(produto[0]) == false) {
+		if(arquivos.verifNotID(produto[0]) == false) {
 			for(int c = 0; c < 8; c++) {
 				arquivos.escrever(produto[c] + "/");
 			}
 			arquivos.escrever("\n");
 			JOptionPane.showMessageDialog(null, "Item cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+		} else {
+			JOptionPane.showMessageDialog(null, "Ja existe um item cadastrado com esse ID: " + produto[0], "ID Existente", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 }

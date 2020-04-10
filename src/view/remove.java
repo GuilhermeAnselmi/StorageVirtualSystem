@@ -9,12 +9,14 @@ import javax.swing.border.EmptyBorder;
 
 import data.arquivos;
 import control.methods;
+import control.produto;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class remove extends JFrame {
 
@@ -53,13 +55,23 @@ public class remove extends JFrame {
 		txtID.setColumns(10);
 		
 		JButton btnVerif = new JButton("Verificar");
+		JButton btnExcluir = new JButton("Excluir");
+		JButton btnCancelar = new JButton("Cancelar");
 		
 		btnVerif.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				//Chama o método para verificar se o valor no campo ID é inteiro;
 				methods verificar = new methods();
-				verificar.verifInt(txtID.getText());
+				if(verificar.verifInt(txtID.getText())) {
+					
+					//Chama o método conclusão para mostrar se é o produto que deve ser excluido
+					if(conclusão(txtID.getText())) {
+						btnVerif.setEnabled(false);
+						txtID.setEnabled(false);
+						btnExcluir.setEnabled(true);
+					}
+				}
 			}
 		});
 		btnVerif.setBounds(204, 10, 89, 23);
@@ -99,7 +111,11 @@ public class remove extends JFrame {
 		txtQuant.setBounds(75, 163, 118, 20);
 		contentPane.add(txtQuant);
 		
-		JButton btnExcluir = new JButton("Excluir");
+		btnExcluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		btnExcluir.setEnabled(false);
 		btnExcluir.setBounds(204, 190, 89, 23);
 		contentPane.add(btnExcluir);
@@ -113,5 +129,43 @@ public class remove extends JFrame {
 		JLabel lblGtin = new JLabel("GTIN:");
 		lblGtin.setBounds(7, 191, 60, 14);
 		contentPane.add(lblGtin);
+		
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnExcluir.setEnabled(false);
+				btnVerif.setEnabled(true);
+				txtID.setEnabled(true);
+				txtProd.setText("");
+				txtPreco.setText("");
+				txtQuant.setText("");
+				txtGtin.setText("");
+			}
+		});
+		btnCancelar.setBounds(204, 60, 89, 23);
+		contentPane.add(btnCancelar);
+	}
+	
+	//Método para procurar o item e retornar o valor que foi adicionado no objeto para o TextField
+	private boolean conclusão(String id) {
+		boolean value = false;
+		
+		if(arquivos.verifNotID(id) == false) {
+			JOptionPane.showMessageDialog(null, "Esse ID não existe nos registros", "ID Inexistente", JOptionPane.ERROR_MESSAGE);
+			value = false;
+		} else {
+			String nome = arquivos.procurarNome(txtID.getText());
+			String preco = arquivos.procurarPreco(txtID.getText());
+			String gtin = arquivos.procurarGtin(txtID.getText());
+			String quant = arquivos.procurarQuant(txtID.getText());
+			
+			txtProd.setText(nome);
+			txtPreco.setText(preco);
+			txtQuant.setText(quant);
+			txtGtin.setText(gtin);
+			
+			value = true;
+		}
+		
+		return value;
 	}
 }
