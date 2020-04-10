@@ -10,7 +10,17 @@ import java.io.PrintWriter;
 
 import javax.swing.JOptionPane;
 
+/*
+ * ESSA CLASSE AINDA ESTA EM COMPLETO DESENVOLVIMENTO
+ * TODA DECLARAÇÃO DELA FUTURAMENTE SERÁ TROCADA PELO ELASTICSEARCH
+ * PARA PODER LIDAR COM ARQUIVOS .json
+ * PORTANTO NÃO IREI ME APERFEIÇOAR MUITO NA DOCUMENTAÇÃO E NA
+ * ATUALIZAÇÃO DA MESMA
+ */
+
 public class arquivos {
+	
+	//Método que faz o envio de novos dados para o arquivo .pdt
 	public static void escrever(String p) {
 		try {
 			FileWriter produtos = new FileWriter("products.pdt", true);
@@ -25,6 +35,7 @@ public class arquivos {
 		}
 	}
 	
+	//Método que verifica a existencia de um ID
 	public static boolean verifID(String id) {
 		try {
 			FileReader arq = new FileReader("products.pdt");
@@ -61,6 +72,7 @@ public class arquivos {
 		}
 	}
 	
+	//Método responsavel por pegar os produtos e listar os mesmos
 	public static String listar() {
 		try {
 			FileReader arq = new FileReader("products.pdt");

@@ -4,6 +4,11 @@ import javax.swing.JOptionPane;
 
 public class methods {
 	
+	/*
+	 * Método para sair do sistema com segurança
+	 * Ainda será implementado uma verificação para fazer o fechamento correto do sistema
+	 * fechando todos os arquivos e verificando se não terá nenhum arquivo prejudicado com o fechamento
+	 */
 	public void sair() {
 		int res = 1;
 		Object[] options = { "Sair", "Cancelar" };
@@ -13,12 +18,13 @@ public class methods {
 		}
 	}
 	
-	public boolean verifInt(String id) {
+	//Método que verifica se o valor é inteiro
+	public boolean verifInt(String valor) {
 		boolean value = false;
 		
 		try {
-			Integer.parseInt(id);
-			System.out.println(id);
+			Integer.parseInt(valor);
+			System.out.println(valor);
 			value = true;
 		} catch(Exception error) {
 			JOptionPane.showMessageDialog(null, "O campo ID não pode esta vazio ou contem caracteres e pontuação\n" + 
