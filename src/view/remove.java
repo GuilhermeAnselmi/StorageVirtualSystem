@@ -113,7 +113,11 @@ public class remove extends JFrame {
 		
 		btnExcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				methods metodo = new methods();
 				
+				if(metodo.confirm("Excluir", "Cancelar", "Isso excluira totalmente o item do seu sistema,\n e não terá como recupera-lo\nDeseja prosseguir?")) {
+					arquivos.excluirItem(txtID.getText());
+				}
 			}
 		});
 		btnExcluir.setEnabled(false);

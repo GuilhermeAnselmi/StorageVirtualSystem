@@ -25,7 +25,7 @@ public class arquivos {
 	//Método que faz o envio de novos dados para o arquivo .pdt
 	public static void escrever(String p) {
 		try {
-			FileWriter produtos = new FileWriter("products.pdt", true);
+			FileWriter produtos = new FileWriter("data/products.pdt", true);
 			PrintWriter item = new PrintWriter(produtos);
 			
 			item.write(p);
@@ -40,7 +40,7 @@ public class arquivos {
 	//Método que verifica a existencia de um ID
 	public static boolean verifNotID(String id) {
 		try {
-			FileReader arq = new FileReader("products.pdt");
+			FileReader arq = new FileReader("data/products.pdt");
 			BufferedReader ler = new BufferedReader(arq);
 			
 			String verif;
@@ -84,7 +84,7 @@ public class arquivos {
 	 */
 	public static String procurarNome(String id) {
 		try {
-			FileReader arq = new FileReader("products.pdt");
+			FileReader arq = new FileReader("data/products.pdt");
 			BufferedReader ler = new BufferedReader(arq);
 			
 			String verif;
@@ -122,7 +122,7 @@ public class arquivos {
 	
 	public static String procurarPreco(String id) {
 		try {
-			FileReader arq = new FileReader("products.pdt");
+			FileReader arq = new FileReader("data/products.pdt");
 			BufferedReader ler = new BufferedReader(arq);
 			
 			String verif;
@@ -160,7 +160,7 @@ public class arquivos {
 	
 	public static String procurarGtin(String id) {
 		try {
-			FileReader arq = new FileReader("products.pdt");
+			FileReader arq = new FileReader("data/products.pdt");
 			BufferedReader ler = new BufferedReader(arq);
 			
 			String verif;
@@ -198,7 +198,7 @@ public class arquivos {
 	
 	public static String procurarQuant(String id) {
 		try {
-			FileReader arq = new FileReader("products.pdt");
+			FileReader arq = new FileReader("data/products.pdt");
 			BufferedReader ler = new BufferedReader(arq);
 			
 			String verif;
@@ -241,7 +241,7 @@ public class arquivos {
 	//Método responsavel por pegar os produtos e listar os mesmos
 	public static String listar() {
 		try {
-			FileReader arq = new FileReader("products.pdt");
+			FileReader arq = new FileReader("data/products.pdt");
 			BufferedReader ler = new BufferedReader(arq);
 			
 			String conteudo = "";
@@ -263,5 +263,43 @@ public class arquivos {
 			JOptionPane.showMessageDialog(null, erro, "Erro ao Ler Dados", JOptionPane.ERROR_MESSAGE);
 		}
 		return null;
+	}
+	
+	public static boolean excluirItem(String id) {
+		try {
+			FileReader arq = new FileReader("data/products.pdt");
+			BufferedReader ler = new BufferedReader(arq);
+			
+			String verif;
+			String linha;
+			try {
+				linha = ler.readLine();
+				while(linha != null) {
+					verif = linha.split("/")[0];
+					
+					if(verif.equals(id)) {
+						linha = "";
+						
+						arq.close();
+						ler.close();
+						
+						return true;
+					}
+					
+					linha = ler.readLine();
+				}
+				
+				arq.close();
+				ler.close();
+				
+				return false;
+			} catch(Exception erro) {
+				JOptionPane.showMessageDialog(null, erro, "Erro", JOptionPane.ERROR_MESSAGE);
+				return true;
+			}
+		} catch(Exception erro) {
+			JOptionPane.showMessageDialog(null, erro, "Erro", JOptionPane.ERROR_MESSAGE);
+			return true;
+		}
 	}
 }

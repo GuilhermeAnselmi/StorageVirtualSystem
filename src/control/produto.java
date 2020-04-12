@@ -95,10 +95,11 @@ public class produto {
 		
 		//Aqui é feito o envio dos dados um de cada vez, seja ele algum valor, caracter ou nulo (0)
 		if(arquivos.verifNotID(produto[0]) == false) {
-			for(int c = 0; c < 8; c++) {
+			arquivos.escrever("\n");
+			for(int c = 0; c < 7; c++) {
 				arquivos.escrever(produto[c] + "/");
 			}
-			arquivos.escrever("\n");
+			arquivos.escrever(produto[7]);
 			JOptionPane.showMessageDialog(null, "Item cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 		} else {
 			JOptionPane.showMessageDialog(null, "Ja existe um item cadastrado com esse ID: " + produto[0], "ID Existente", JOptionPane.WARNING_MESSAGE);
