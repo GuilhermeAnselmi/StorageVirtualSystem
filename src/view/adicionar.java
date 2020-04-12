@@ -182,6 +182,7 @@ public class adicionar extends JFrame {
 				//Evento principal ao clicar para Finalizar a adição de um produto.
 				String tipo = null;
 				String descr = null;
+				String gtin = null;
 				
 				//Breve verificação do campo do ComboBox
 				if(cmbTipo.getSelectedItem() == null) {
@@ -190,7 +191,13 @@ public class adicionar extends JFrame {
 					tipo = cmbTipo.getSelectedItem().toString();
 				}
 				
-				if(verif(txtID.getText(), txtNome.getText(), txtPreco.getText(), txtDesconto.getText(), txtGtin.getText(), txtDescr.getText())) {
+				if(txtGtin.getText().equals("")) {
+					gtin = "0";
+				} else {
+					gtin = txtGtin.getText();
+				}
+				
+				if(verif(txtID.getText(), txtNome.getText(), txtPreco.getText(), txtDesconto.getText(), gtin, txtDescr.getText())) {
 					String desc = null;
 					if(txtDesconto.getText().length() == 0) {
 						desc = "0.0";
@@ -211,6 +218,7 @@ public class adicionar extends JFrame {
 					item.setPreco(Float.parseFloat(txtPreco.getText()));
 					item.setTipo(tipo);
 					item.setDesconto(Float.parseFloat(desc));
+					item.setGtin(Integer.parseInt(gtin));
 					item.setDescr(descr);
 					
 					//Chama o metodo para cadastrar os produtos, que se encontra no objeto
@@ -236,20 +244,18 @@ public class adicionar extends JFrame {
 		if(id.length() == 0 || nome.length() == 0 || preco.length() == 0) {
 			JOptionPane.showMessageDialog(null, "Todos os campos obrigatórios devem estar preenchidos", "Preenchimento Obrigatório", JOptionPane.WARNING_MESSAGE);
 			return false;
-		} else {
-			if(desconto.matches("[0-9]*") == false) {
-				JOptionPane.showMessageDialog(null, "Os campos ID, Preço, Desconto, GTIN devem conter valores numericos ou nenhum valor\nO ID e GTIN não podem conter ponto ou virgula", "Erro de Tipo", JOptionPane.ERROR_MESSAGE);
-				return false;
-			}
-			
-			if(gtin.matches("[0-9]*") == false) {
-				JOptionPane.showMessageDialog(null, "Os campos ID, Preço, Desconto, GTIN devem conter valores numericos ou nenhum valor\nO ID e GTIN não podem conter ponto ou virgula", "Erro de Tipo", JOptionPane.ERROR_MESSAGE);
-				return false;
-			}
-			
+		} else {	
 			try {
 				Integer.parseInt(id);
 				Float.parseFloat(preco);
+				
+				if(!desconto.equals("")) {
+					Float.parseFloat(desconto);
+				}
+				
+				if(!gtin.equals("")) {
+					Integer.parseInt(gtin);
+				}
 				return true;
 			} catch(Exception error) {
 				JOptionPane.showMessageDialog(null, "Os campos ID, Preço, Desconto, GTIN devem conter valores numericos ou nenhum valor\nO ID e GTIN não podem conter ponto ou virgula", "Erro de Tipo", JOptionPane.ERROR_MESSAGE);
