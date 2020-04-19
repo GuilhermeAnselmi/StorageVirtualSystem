@@ -6,103 +6,78 @@ import data.arquivos;
 
 //Classe objeto produto
 public class produto {
-	private int id;
-	private String nome;
-	private float preco;
-	private String tipo;
-	private float desconto;
-	private int gtin;
-	private String descr;
-	private int quant;
+	private static int id;
+	private static String nome;
+	private static float preco;
+	private static String tipo;
+	private static float desconto;
+	private static int gtin;
+	private static String descr;
+	private static int quant;
 	
 	//Métodos getters e setters
-	public int getId() {
+	
+	public static int getId() {
 		return id;
 	}
 	
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public String getNome() {
+	
+	public static String getNome() {
 		return nome;
 	}
-
+	
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-	public float getPreco() {
-		return this.preco;
+	
+	public static float getPreco() {
+		return preco;
 	}
-
+	
 	public void setPreco(float preco) {
 		this.preco = preco;
 	}
-
-	public String getTipo() {
+	
+	public static String getTipo() {
 		return tipo;
 	}
-
+	
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-
-	public float getDesconto() {
+	
+	public static float getDesconto() {
 		return desconto;
 	}
-
+	
 	public void setDesconto(float desconto) {
 		this.desconto = desconto;
 	}
-
-	public int getGtin() {
+	
+	public static int getGtin() {
 		return gtin;
 	}
-
+	
 	public void setGtin(int gtin) {
 		this.gtin = gtin;
 	}
-
-	public String getDescr() {
+	
+	public static String getDescr() {
 		return descr;
 	}
-
+	
 	public void setDescr(String descr) {
 		this.descr = descr;
 	}
 	
-	public int getQuant() {
+	public static int getQuant() {
 		return quant;
 	}
 	
 	public void setQuant(int quant) {
 		this.quant = quant;
-	}
-	
-	//Método de conversão e envio dos dados para um arquivo .pdt (criado por mim)
-	public void cadastrar() {
-		String produto[];
-		produto = new String[8];
-		produto[0] = Integer.toString(getId());
-		produto[1] = getNome();
-		produto[2] = Float.toString(getPreco());
-		produto[3] = tipo;
-		produto[4] = Float.toString(getDesconto());
-		produto[5] = Integer.toString(getGtin());
-		produto[6] = descr;
-		produto[7] = "0";
-		
-		//Aqui é feito o envio dos dados um de cada vez, seja ele algum valor, caracter ou nulo (0)
-		if(arquivos.verifNotID(produto[0]) == false) {
-			arquivos.escrever("\n");
-			for(int c = 0; c < 7; c++) {
-				arquivos.escrever(produto[c] + "/");
-			}
-			arquivos.escrever(produto[7]);
-			JOptionPane.showMessageDialog(null, "Item cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-		} else {
-			JOptionPane.showMessageDialog(null, "Ja existe um item cadastrado com esse ID: " + produto[0], "ID Existente", JOptionPane.WARNING_MESSAGE);
-		}
 	}
 }

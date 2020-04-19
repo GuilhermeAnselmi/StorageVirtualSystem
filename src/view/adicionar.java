@@ -27,6 +27,7 @@ import javax.swing.JButton;
 import javax.swing.event.ChangeListener;
 
 import control.produto;
+import data.database;
 
 import javax.swing.event.ChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -34,6 +35,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.VetoableChangeListener;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 import javax.swing.DefaultComboBoxModel;
 
@@ -213,6 +215,7 @@ public class adicionar extends JFrame {
 					
 					//Envio dos dados para a classe do objeto em questão (produto)
 					produto item = new produto();
+					
 					item.setId(Integer.parseInt(txtID.getText()));
 					item.setNome(txtNome.getText());
 					item.setPreco(Float.parseFloat(txtPreco.getText()));
@@ -221,8 +224,12 @@ public class adicionar extends JFrame {
 					item.setGtin(Integer.parseInt(gtin));
 					item.setDescr(descr);
 					
-					//Chama o metodo para cadastrar os produtos, que se encontra no objeto
-					item.cadastrar();
+					//Chama o metodo para cadastrar os produtos
+					try {
+						database.cadastrar();
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
 				}
 			}
 		});
